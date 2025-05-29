@@ -1,54 +1,81 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
+// import { useState } from "react";
+// import { invoke } from "@tauri-apps/api/core";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
-
   return (
     <main>
-      <div className="flex items-center gap-4 bg-[#111] justify-center py-4">
-        <img src="./logo.svg" height="64" width="64" />
-        <h3 className="text-3xl">Imali - The African Digital Wallet</h3>
-      </div>
-      <h1 className="text-6xl">Welcome to Tauri + React</h1>
+      <Header />
 
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex flex-col items-center justify-center gap-4 bg-[#e0ae6e] bg-[url('/imagination.jpg')] bg-cover bg-center bg-blend-screen text-black py-6 px-6 mb-16">
+        <article>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="128"
+            height="128"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-message-circle-question text-center m-auto"
+          >
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+          <h2 className="text-4xl font-black max-w-3xl text-center pb-4">
+            What if a cryptowallet was both secure and simple?
+          </h2>
+          <p className="text-2xl max-w-3xl pb-4">
+            Imagine a uniquely African digital wallet made for security, web3
+            and privacy. Imagine a simple unified application for buying,
+            selling, trading and even staking cryptocurrency that works
+            regardless of platform or device
+          </p>
+          <p className="text-2xl max-w-3xl">
+            We are Imali Digital Wallet. Stop imagining, start transacting!
+          </p>
+        </article>
+        <div className="flex flex-col items-center justify-center lg:flex-row lg:gap-12">
+          <figure className="card bg-[#ffffffaa] w-96 shadow-lg px-4 py-4 text-center flex flex-col items-center justify-center gap-4 border">
+            <img
+              src="/logo.svg"
+              alt="Imali Digital Wallet"
+              height="256"
+              width="256"
+            />
+            <h1 className="text-4xl font-black text-center uppercase">
+              Imali Digital Wallet
+            </h1>
+            <p> A non-custodial secure cryptowallet done the African way</p>
+            <button className="btn">Learn More</button>
+          </figure>
+          <div className="py-4">
+            <h2 className="text-2xl uppercase font-black pb-6">Signup</h2>
+            <p className="text-xl">
+              Signing up for Imali is easy and only takes a few seconds.
+            </p>
+            <form className="flex flex-col gap-4 mt-4">
+              <label>Email:</label>
+              <input className="border bg-[#ffffffaa] px-2 py-2 rounded shadow-sm" />
+              <label>Phone Number:</label>
+              <input className="border bg-[#ffffffaa] px-2 py-2 rounded shadow-sm" />
+              <label>Username:</label>
+              <input className="border bg-[#ffffffaa] px-2 py-2 rounded shadow-sm" />
+              <label>Password</label>
+              <input className="border bg-[#ffffffaa] px-2 py-2 rounded shadow-sm" />
+              <label>Confirm Password</label>
+              <input className="border bg-[#ffffffaa] px-2 py-2 rounded shadow-sm" />
+              <button className="btn btn-primary w-24 py-2 shadow-md">Signup</button>
+            </form>
+          </div>
+        </div>
+        <Footer />
       </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-      <button class="btn btn-primary">Button</button>
     </main>
   );
 }
